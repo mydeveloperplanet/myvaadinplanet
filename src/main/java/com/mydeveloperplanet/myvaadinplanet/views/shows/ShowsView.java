@@ -1,6 +1,9 @@
 package com.mydeveloperplanet.myvaadinplanet.views.shows;
 
+import com.mydeveloperplanet.myvaadinplanet.data.entity.Show;
+import com.mydeveloperplanet.myvaadinplanet.data.service.ShowService;
 import com.mydeveloperplanet.myvaadinplanet.views.MainLayout;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -13,21 +16,31 @@ import com.vaadin.flow.router.RouteAlias;
 @Route(value = "shows", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class ShowsView extends VerticalLayout {
+    ShowService showService;
+    Grid<Show> grid = new Grid<>(Show.class);
 
-    public ShowsView() {
+    public ShowsView(ShowService showService) {
+        this.showService = showService;
         setSpacing(false);
 
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
-
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
+        configureGrid();
+        add(grid);
+        updateList();
 
         setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         getStyle().set("text-align", "center");
+    }
+
+    private void configureGrid() {
+        grid.addClassNames("show-grid");
+        grid.setSizeFull();
+        grid.setColumns("id", "title");
+        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+}
+
+    private void updateList() {
+        grid.setItems(showService.findAllShows());
     }
 
 }
