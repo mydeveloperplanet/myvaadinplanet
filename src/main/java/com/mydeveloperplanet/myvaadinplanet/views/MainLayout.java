@@ -2,7 +2,7 @@ package com.mydeveloperplanet.myvaadinplanet.views;
 
 
 import com.mydeveloperplanet.myvaadinplanet.views.about.AboutView;
-import com.mydeveloperplanet.myvaadinplanet.views.showevents.ShoweventsView;
+import com.mydeveloperplanet.myvaadinplanet.views.showevents.ShowEventsView;
 import com.mydeveloperplanet.myvaadinplanet.views.shows.ShowsView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -126,7 +126,7 @@ public class MainLayout extends AppLayout {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Shows", "la la-file", ShowsView.class), //
 
-                new MenuItemInfo("Showevents", "la la-file", ShoweventsView.class), //
+                new MenuItemInfo("Showevents", "la la-file", ShowEventsView.class), //
 
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
 
