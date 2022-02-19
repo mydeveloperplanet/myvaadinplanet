@@ -7,6 +7,7 @@ import com.mydeveloperplanet.myvaadinplanet.data.entity.ShowEvent;
 import com.mydeveloperplanet.myvaadinplanet.data.repository.ShowEventRepository;
 import com.mydeveloperplanet.myvaadinplanet.data.repository.ShowRepository;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,16 +22,12 @@ public class ShowService {
         this.showRepository = showRepository;
     }
 
-    public List<ShowEvent> findAllShowEvents(String stringFilter) {
-//        if (stringFilter == null || stringFilter.isEmpty()) {
-        return showEventRepository.findAll();
-//        } else {
-//            return showEventRepository.search(stringFilter);
-//        }
+    public List<ShowEvent> fetchShowEvents(int offset, int limit) {
+        return showEventRepository.findAll(PageRequest.of(offset / limit, limit)).stream().toList();
     }
 
-    public long countShowEvents() {
-        return showEventRepository.count();
+    public int countShowEvents() {
+        return (int) showEventRepository.count();
     }
 
     public void deleteShowEvent(ShowEvent showEvent) {
@@ -48,5 +45,6 @@ public class ShowService {
     public List<Show> findAllShows() {
         return showRepository.findAll();
     }
+
 
 }

@@ -42,7 +42,7 @@ public class DataGenerator {
             showEventGenerator.setData(ShowEvent::setDate, DataType.DATE_NEXT_1_YEAR);
 
             Random r = new Random(seed);
-            List<ShowEvent> showEvents = showEventGenerator.create(50, seed).stream().map(showEvent -> {
+            List<ShowEvent> showEvents = showEventGenerator.create(1000, seed).stream().map(showEvent -> {
                 showEvent.setShow(shows.get(r.nextInt(shows.size())));
                 return showEvent;
             }).collect(Collectors.toList());

@@ -2,8 +2,8 @@ package com.mydeveloperplanet.myvaadinplanet.data.repository;
 
 import com.mydeveloperplanet.myvaadinplanet.data.entity.ShowEvent;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ShowEventRepository extends JpaRepository<ShowEvent, Long> {
+public interface ShowEventRepository extends PagingAndSortingRepository<ShowEvent, Long> {
 
 }

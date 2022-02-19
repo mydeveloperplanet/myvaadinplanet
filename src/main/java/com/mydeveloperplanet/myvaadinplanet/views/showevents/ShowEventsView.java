@@ -1,11 +1,14 @@
 package com.mydeveloperplanet.myvaadinplanet.views.showevents;
 
+import java.util.List;
+
 import com.mydeveloperplanet.myvaadinplanet.data.entity.ShowEvent;
 import com.mydeveloperplanet.myvaadinplanet.data.service.ShowService;
 import com.mydeveloperplanet.myvaadinplanet.views.MainLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -88,7 +91,24 @@ public class ShowEventsView extends VerticalLayout {
     }
 
     private void updateList() {
-        grid.setItems(showService.findAllShowEvents(""));
+        DataProvider<ShowEvent, Void> dataProvider =
+                DataProvider.fromCallbacks(
+                        // First callback fetches items based on a query
+                        query -> {
+                            // The index of the first item to load
+                            int offset = query.getOffset();
+
+                            // The number of items to load
+                            int limit = query.getLimit();
+
+                            List<ShowEvent> showEvents = showService.fetchShowEvents(offset, limit);
+
+                            return showEvents.stream();
+                        },
+                        // Second callback fetches the total number of items currently in the Grid.
+                        // The grid can then use it to properly adjust the scrollbars.
+                        query -> showService.countShowEvents());
+        grid.setDataProvider(dataProvider);
     }
 
 }
