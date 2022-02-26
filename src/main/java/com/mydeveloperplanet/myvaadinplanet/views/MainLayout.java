@@ -1,6 +1,5 @@
 package com.mydeveloperplanet.myvaadinplanet.views;
 
-
 import com.mydeveloperplanet.myvaadinplanet.views.about.AboutView;
 import com.mydeveloperplanet.myvaadinplanet.views.showevents.ShowEventsView;
 import com.mydeveloperplanet.myvaadinplanet.views.shows.ShowsView;

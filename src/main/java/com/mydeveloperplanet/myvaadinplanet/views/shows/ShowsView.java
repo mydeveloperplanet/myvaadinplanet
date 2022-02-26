@@ -4,9 +4,6 @@ import com.mydeveloperplanet.myvaadinplanet.data.entity.Show;
 import com.mydeveloperplanet.myvaadinplanet.data.service.ShowService;
 import com.mydeveloperplanet.myvaadinplanet.views.MainLayout;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -37,7 +34,7 @@ public class ShowsView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("id", "title");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
-}
+    }
 
     private void updateList() {
         grid.setItems(showService.findAllShows());
